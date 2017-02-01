@@ -5,5 +5,5 @@ package com.yamenrbdgmail.flickerbrowser;
  */
 
 public class Photo {
-
+    private String title;
 }
