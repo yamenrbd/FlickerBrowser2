@@ -1,12 +1,81 @@
 package com.yamenrbdgmail.flickerbrowser;
 
+import android.net.Uri;
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
 /**
  * Created by German Center on 02/02/2017.
  */
 
 public class GetFlickerJsonData extends GetRowData {
+    private String LOG_TAG;
+    private List<Photo> mPhoto;
+    private Uri mDistinationUri;
+
+
+
     public GetFlickerJsonData (String searchCriteria , boolean matchAll){
         super(null);
+        createAndUpdateUri( searchCriteria,  matchAll);
 
+    }
+    public boolean createAndUpdateUri(String searchCriteria, boolean matchAll){
+
+    final String FLICKER_API_BASE_URL ="https://api.flickr.com/services/feeds/photos_public.gne";
+        final String TAGS_PARM="tags";
+        final String TAGMODE_PARM ="tagmode";
+        final String FORMAT_PARM ="format";
+        final String NO_JSON_CALL_BACK_PARM="nojsoncallback";
+
+        mDistinationUri = Uri.parse(FLICKER_API_BASE_URL).buildUpon()
+                .appendQueryParameter(TAGS_PARM,searchCriteria)
+                .appendQueryParameter(TAGMODE_PARM,matchAll ?"ALL":"ANY")
+                .appendQueryParameter(FORMAT_PARM,"json")
+                .appendQueryParameter(NO_JSON_CALL_BACK_PARM,"1")
+                .build();
+        return mDistinationUri != null;
+
+
+    }
+    public void processResult(){
+        if(getmDownloadStatus()!=DownloadStatus.OK){
+            Log.e(LOG_TAG,"error downloding file");
+            return;
+        }
+        final String FLICKR_ITEM = "items";
+        final String FLICKR_TITLE ="title";
+        final String FLICKR_MEIDA = "media";
+        final String FLICKR_PHOTO_URL ="m";
+        final String FLICKR_AUTHOR = "author";
+        final String FLICKR_AUTHOR_ID = "author_id";
+        final String FLICKR_LINK="link";
+        final String FLICKR_TAGS="tags";
+
+        try{
+            JSONObject jsonData = new JSONObject(getmData());
+            //minutes number 8
+        }
+        catch (JSONException jsone){
+            jsone.printStackTrace();
+            Log.e(LOG_TAG,"error processing data");
+        }
+    }
+
+    public class DownlodJsonData extends DownloadRawData{
+        @Override
+        protected void onPostExecute(String webData) {
+            super.onPostExecute(webData);
+            processResult();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return super.doInBackground(params);
+        }
     }
 }
