@@ -3,9 +3,11 @@ package com.yamenrbdgmail.flickerbrowser;
 import android.net.Uri;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ public class GetFlickerJsonData extends GetRowData {
     public GetFlickerJsonData (String searchCriteria , boolean matchAll){
         super(null);
         createAndUpdateUri( searchCriteria,  matchAll);
+        mPhoto = new ArrayList<Photo>();
 
     }
     public boolean createAndUpdateUri(String searchCriteria, boolean matchAll){
@@ -58,7 +61,26 @@ public class GetFlickerJsonData extends GetRowData {
 
         try{
             JSONObject jsonData = new JSONObject(getmData());
-            //minutes number 8
+            JSONArray itemArray = jsonData.getJSONArray(FLICKR_ITEM);
+            for(int i =0 ; i <itemArray.length();i++){
+                JSONObject jsonPhoto = itemArray.getJSONObject(i);
+                String title = jsonPhoto.getString(FLICKR_TITLE);
+                String author = jsonPhoto.getString(FLICKR_AUTHOR);
+                String authorId = jsonPhoto.getString(FLICKR_AUTHOR_ID);
+                String link =jsonPhoto.getString(FLICKR_LINK);
+                String tags = jsonPhoto.getString(FLICKR_TAGS);
+
+                JSONObject jsonMedia = jsonPhoto.getJSONObject(FLICKR_MEIDA);
+                String photoUrl = jsonMedia.getString(FLICKR_PHOTO_URL);
+                Photo photoObject = new Photo(title,author,authorId,link,tags,photoUrl);
+                this.mPhoto.add(photoObject);
+
+            }
+            for(Photo singlePhoto : mPhoto ){
+                Log.v(LOG_TAG,singlePhoto.toString());
+                //TODO 14 minutes
+
+            }
         }
         catch (JSONException jsone){
             jsone.printStackTrace();
