@@ -78,7 +78,7 @@ public class GetFlickerJsonData extends GetRowData {
             }
             for(Photo singlePhoto : mPhoto ){
                 Log.v(LOG_TAG,singlePhoto.toString());
-                //TODO 14 minutes
+                //TODO 14 minutes 
 
             }
         }
