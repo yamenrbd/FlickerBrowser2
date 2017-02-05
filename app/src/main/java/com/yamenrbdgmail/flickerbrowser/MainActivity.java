@@ -20,16 +20,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
             GetRowData theRowData = new GetRowData("https://api.flickr.com/services/feeds/photos_public.gne?tags=android,kitkat&format=json&nojsoncallback=1");
-            theRowData.execute();
+           // theRowData.execute();
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+            GetFlickerJsonData jasonData = new GetFlickerJsonData("android,lollipop",true);
+            jasonData.execute();
     }
 
     @Override

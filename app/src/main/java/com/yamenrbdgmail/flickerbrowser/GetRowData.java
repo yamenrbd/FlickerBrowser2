@@ -26,6 +26,11 @@ public class GetRowData {
         this.mDownloadStatus = DownloadStatus.IDLE;
 
     }
+
+    public void setmRowUrl(String mRowUrl) {
+        this.mRowUrl = mRowUrl;
+    }
+
     public void reset (String mRowUrl){
         this.mRowUrl=null;
         this.mData=null;

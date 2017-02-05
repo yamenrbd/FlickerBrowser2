@@ -27,6 +27,14 @@ public class GetFlickerJsonData extends GetRowData {
         mPhoto = new ArrayList<Photo>();
 
     }
+    public void execute(){
+        super.setmRowUrl(mDistinationUri.toString());
+        DownlodJsonData downlodJsonData =  new DownlodJsonData();
+        Log.v(LOG_TAG,"BULIT URI = "+mDistinationUri.toString());
+        downlodJsonData.execute(mDistinationUri.toString());
+
+    }
+
     public boolean createAndUpdateUri(String searchCriteria, boolean matchAll){
 
     final String FLICKER_API_BASE_URL ="https://api.flickr.com/services/feeds/photos_public.gne";
@@ -63,6 +71,7 @@ public class GetFlickerJsonData extends GetRowData {
             JSONObject jsonData = new JSONObject(getmData());
             JSONArray itemArray = jsonData.getJSONArray(FLICKR_ITEM);
             for(int i =0 ; i <itemArray.length();i++){
+
                 JSONObject jsonPhoto = itemArray.getJSONObject(i);
                 String title = jsonPhoto.getString(FLICKR_TITLE);
                 String author = jsonPhoto.getString(FLICKR_AUTHOR);
@@ -78,7 +87,7 @@ public class GetFlickerJsonData extends GetRowData {
             }
             for(Photo singlePhoto : mPhoto ){
                 Log.v(LOG_TAG,singlePhoto.toString());
-                //TODO 14 minutes 
+
 
             }
         }
