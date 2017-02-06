@@ -53,6 +53,11 @@ public class GetFlickerJsonData extends GetRowData {
 
 
     }
+
+    public List<Photo> getMPhoto() {
+        return mPhoto;
+    }
+
     public void processResult(){
         if(getmDownloadStatus()!=DownloadStatus.OK){
             Log.e(LOG_TAG,"error downloding file");
@@ -106,6 +111,7 @@ public class GetFlickerJsonData extends GetRowData {
 
         @Override
         protected String doInBackground(String... params) {
+            String[] par = {mDistinationUri.toString()};
             return super.doInBackground(params);
         }
     }

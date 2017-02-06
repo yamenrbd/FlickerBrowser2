@@ -23,6 +23,6 @@
         android:id="@+id/title"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:maxline="3"
+        android:maxLines="3"
         android:layout_marginLeft="8dp" />
 </LinearLayout>

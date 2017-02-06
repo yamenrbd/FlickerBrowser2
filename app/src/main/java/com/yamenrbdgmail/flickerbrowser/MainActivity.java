@@ -1,16 +1,23 @@
 package com.yamenrbdgmail.flickerbrowser;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
+    private final String LOG_TAG = "mainActivit";
+    private List<Photo> mPhotoList = new ArrayList<>();
+    private RecyclerView mRecyclerView ;
+    private FlickerRecycleViewAdaptern flickerRecycleViewAdaptern;
+
+
 
 
     @Override
@@ -19,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-            GetRowData theRowData = new GetRowData("https://api.flickr.com/services/feeds/photos_public.gne?tags=android,kitkat&format=json&nojsoncallback=1");
+            //GetRowData theRowData = new GetRowData("https://api.flickr.com/services/feeds/photos_public.gne?tags=android,kitkat&format=json&nojsoncallback=1");
            // theRowData.execute();
 
             GetFlickerJsonData jasonData = new GetFlickerJsonData("android,lollipop",true);
@@ -46,5 +53,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public class ProcessPhoto extends GetFlickerJsonData{
+        public ProcessPhoto(String searchCriteria, boolean matchAll) {
+            super(searchCriteria, matchAll);
+        }
+        public void execute(){
+            super.execute();
+            ProcessData processData = new ProcessData();
+            processData.execute();
+        }
+        public class ProcessData extends DownlodJsonData{
+            protected void onPostExecute(String webData){
+                super.onPostExecute(webData);
+                flickerRecycleViewAdaptern = new FlickerRecycleViewAdaptern(MainActivity.this,getMPhoto());
+                mRecyclerView.setAdapter(flickerRecycleViewAdaptern);
+            }
+
+
+        }
     }
 }
