@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class GetFlickerJsonData extends GetRowData {
-    private String LOG_TAG;
+    private String LOG_TAG=GetFlickerJsonData.class.getSimpleName();
     private List<Photo> mPhoto;
     private Uri mDistinationUri;
 
@@ -37,17 +37,17 @@ public class GetFlickerJsonData extends GetRowData {
 
     public boolean createAndUpdateUri(String searchCriteria, boolean matchAll){
 
-    final String FLICKER_API_BASE_URL ="https://api.flickr.com/services/feeds/photos_public.gne";
+        final String FLICKER_API_BASE_URL ="https://api.flickr.com/services/feeds/photos_public.gne";
         final String TAGS_PARM="tags";
-        final String TAGMODE_PARM ="tagmode";
-        final String FORMAT_PARM ="format";
-        final String NO_JSON_CALL_BACK_PARM="nojsoncallback";
+        final String TAGMODE_PARAM ="tagmode";
+        final String FORMAT_PARAM ="format";
+        final String NO_JSON_CALL_BACK_PARAM="nojsoncallback";
 
         mDistinationUri = Uri.parse(FLICKER_API_BASE_URL).buildUpon()
                 .appendQueryParameter(TAGS_PARM,searchCriteria)
-                .appendQueryParameter(TAGMODE_PARM,matchAll ?"ALL":"ANY")
-                .appendQueryParameter(FORMAT_PARM,"json")
-                .appendQueryParameter(NO_JSON_CALL_BACK_PARM,"1")
+                .appendQueryParameter(TAGMODE_PARAM,matchAll ?"ALL":"ANY")
+                .appendQueryParameter(FORMAT_PARAM,"json")
+                .appendQueryParameter(NO_JSON_CALL_BACK_PARAM,"1")
                 .build();
         return mDistinationUri != null;
 
@@ -112,7 +112,7 @@ public class GetFlickerJsonData extends GetRowData {
         @Override
         protected String doInBackground(String... params) {
             String[] par = {mDistinationUri.toString()};
-            return super.doInBackground(params);
+            return super.doInBackground(par);
         }
     }
 }

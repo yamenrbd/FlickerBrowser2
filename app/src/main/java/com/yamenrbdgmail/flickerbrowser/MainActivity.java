@@ -12,10 +12,10 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private final String LOG_TAG = "mainActivit";
-    private List<Photo> mPhotoList = new ArrayList<>();
+    private static final String LOG_TAG = "MainActivit";
+    private List<Photo> mPhotoList = new ArrayList<Photo>();
     private RecyclerView mRecyclerView ;
-    private FlickerRecycleViewAdaptern flickerRecycleViewAdaptern;
+    private FlickerRecycleViewAdapter flickerRecycleViewAdaptern;
 
 
 
@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            mRecyclerView =(RecyclerView) findViewById(R.id.recycle_view);
+
+
+        mRecyclerView =(RecyclerView) findViewById(R.id.recycle_view);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             ProcessPhoto processPhoto = new ProcessPhoto("android,lollilop",true);
             processPhoto.execute();
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         public class ProcessData extends DownlodJsonData{
             protected void onPostExecute(String webData){
                 super.onPostExecute(webData);
-                flickerRecycleViewAdaptern = new FlickerRecycleViewAdaptern(MainActivity.this,getMPhoto());
+                flickerRecycleViewAdaptern = new FlickerRecycleViewAdapter(MainActivity.this,getMPhoto());
                 mRecyclerView.setAdapter(flickerRecycleViewAdaptern);
             }
 

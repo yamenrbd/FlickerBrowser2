@@ -14,6 +14,7 @@ public class FlickerImageViewHolder  extends RecyclerView.ViewHolder{
     protected TextView title;
 
     public FlickerImageViewHolder(View view){
+        super(view);
         this.thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
         this.title = (TextView) view.findViewById(R.id.title);
 

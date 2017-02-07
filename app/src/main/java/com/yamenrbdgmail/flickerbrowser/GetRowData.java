@@ -53,11 +53,11 @@ public class GetRowData {
 
     public class DownloadRawData extends AsyncTask<String , Void , String>{
         protected void onPostExecute(String webData){
-            //TODO fill later
+
             mData =webData;
             Log.v(LOG_TAG,"data returned was "+mData);
             if (mData==null){
-                if(mDownloadStatus==null){
+                if(mRowUrl==null){
                     mDownloadStatus=DownloadStatus.NOT_INITIALISED;
                 }
                 else{
