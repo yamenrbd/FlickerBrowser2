@@ -35,5 +35,9 @@ public class FlickerRecycleViewAdaptern extends RecyclerView.Adapter<FlickerImag
         return (null !=mPhotoList ?mPhotoList.size():0);
     }
 
+    @Override
+    public void onBindViewHolder(FlickerImageViewHolder holder, int i) {
+        Photo photoItem =mPhotoList.get(i);
 
+    }
 }

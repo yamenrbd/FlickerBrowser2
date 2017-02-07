@@ -2,8 +2,8 @@ package com.yamenrbdgmail.flickerbrowser;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -24,13 +24,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-            //GetRowData theRowData = new GetRowData("https://api.flickr.com/services/feeds/photos_public.gne?tags=android,kitkat&format=json&nojsoncallback=1");
-           // theRowData.execute();
 
-            GetFlickerJsonData jasonData = new GetFlickerJsonData("android,lollipop",true);
-            jasonData.execute();
+            mRecyclerView =(RecyclerView) findViewById(R.id.recycle_view);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            ProcessPhoto processPhoto = new ProcessPhoto("android,lollilop",true);
+            processPhoto.execute();
+
+
+
     }
 
     @Override
