@@ -10,4 +10,13 @@ import android.support.v7.widget.Toolbar;
 public class BaseActivity extends AppCompatActivity{
     private Toolbar mToolBar;
 
+    protected Toolbar activateToolBar(){
+        if(mToolBar == null){
+            mToolBar = (Toolbar) findViewById(R.id.app_bar);
+            if(mToolBar != null){
+                setSupportActionBar(mToolBar);
+            }
+        }
+        return mToolBar;
+    }
 }

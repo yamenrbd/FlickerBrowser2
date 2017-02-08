@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String LOG_TAG = "MainActivit";
     private List<Photo> mPhotoList = new ArrayList<Photo>();
     private RecyclerView mRecyclerView ;
