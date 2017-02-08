@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView =(RecyclerView) findViewById(R.id.recycle_view);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            ProcessPhoto processPhoto = new ProcessPhoto("android,lollilop",true);
+            ProcessPhoto processPhoto = new ProcessPhoto("flowers,red",true);
             processPhoto.execute();
 
 

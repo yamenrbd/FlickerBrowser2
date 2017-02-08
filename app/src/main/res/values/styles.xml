@@ -1,20 +1,34 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        </style>
+    <style name="Theme.base" parent="AppTheme">
+        <item name="colorPrimary">@color/flickerPrimaryBackgroundColor</item>
+        <item name="colorPrimaryDark">@color/flickerSecondryBackgroundColor</item>
+        <item name="colorAccent">@color/flickerColorBackgroundAccent</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/flickerBackgroundColor</item>
+        
+    </style>
+    <style name="Theme.Flicker" parent="Theme.base"/>
+    <style name="actionBarThemeOverLay" parent="">
+        <item name="android:textColorPrimary">@color/flickerPrimaryTextColor</item>
+        <item name="android:textColorHighlight">@color/flickerBackgroundColor</item>
+        <item name="android:actionMenuTextColor">@color/flickerPrimaryTextColor</item>
+        <item name="android:textColorSecondary">@color/flickerSecondaryTextColor</item>
+        <item name="android:background">@color/flickerPrimaryBackgroundColor</item>
+
+    </style>
+    <style name="ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/flickerPrimaryTextColor</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
