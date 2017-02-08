@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android1="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android1="http://schemas.android.com/apk/res/android"
     android1:layout_height="match_parent"
     android1:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android1:layout_marginTop="10dp">
+    <include android1:id="@+id/app_bar" layout="@layout/toolbar"/>
 
 <view android1:id="@+id/recycle_view"
+    android1:layout_below="@id/app_bar"
     android1:layout_width="match_parent"
     android1:layout_height="match_parent"
     class="android.support.v7.widget.RecyclerView"/>

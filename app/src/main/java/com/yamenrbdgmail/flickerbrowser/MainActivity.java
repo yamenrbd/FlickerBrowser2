@@ -25,9 +25,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        mRecyclerView =(RecyclerView) findViewById(R.id.recycle_view);
+            activateToolBar();
+            mRecyclerView =(RecyclerView) findViewById(R.id.recycle_view);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             ProcessPhoto processPhoto = new ProcessPhoto("flowers,red",true);
             processPhoto.execute();
